@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ドリンクカウンター</title>
+
+  <!-- スマホ対応 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- スタイル -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>ドリンクカウンター</h1>
+
+    <!-- ===== メンバー管理 ===== -->
+    <section id="member-section">
+      <div id="member-list" class="card"></div>
+    </section>
+
+    <!-- ===== 追加フォーム ===== -->
+    <section id="add-member">
+      <input type="text" id="name-input" placeholder="名前を入力">
+      <button id="add-btn">追加</button>
+    </section>
+
+    <hr>
+
+    <!-- ===== ランキング ===== -->
+    <section id="ranking-section">
+      <h2>ランキング</h2>
+
+      <div id="metric-switch" class="switch">
+        <button data-metric="total">合計</button>
+        <button data-metric="dr">dr</button>
+        <button data-metric="sh">sh</button>
+      </div>
+
+      <div id="ranking-list" class="card"></div>
+    </section>
+
+  </div>
+
+  <!-- JSは最後に -->
+  <script src="main.js"></script>
+</body>
+</html>

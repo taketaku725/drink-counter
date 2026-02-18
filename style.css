@@ -1,0 +1,258 @@
+/* ===== 全体 ===== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #f8f9fa;
+  color: #333;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 16px;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* ===== カード ===== */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ===== メンバー行 ===== */
+.member-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.member-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* ===== 操作ブロックを整理 ===== */
+.member-actions {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* dr / sh ブロック */
+.counter-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #f1f3f5;
+}
+
+/* dr色 */
+.dr-block {
+  background: #e7f1ff;
+}
+
+/* sh色 */
+.sh-block {
+  background: #f3e8ff;
+}
+
+/* ラベル */
+.counter-label {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* 合計 */
+.total-display {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* ===== ボタン基本 ===== */
+button {
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 16px;
+  min-width: 38px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+}
+
+button:active {
+  transform: scale(0.94);
+}
+
+/* ＋ボタン */
+.inc-btn {
+  background: #198754;
+  color: white;
+}
+
+.inc-btn:hover {
+  background: #157347;
+}
+
+/* −ボタン */
+.dec-btn {
+  background: #adb5bd;
+  color: white;
+}
+
+.dec-btn:hover {
+  background: #868e96;
+}
+
+/* 削除ボタン（控えめ） */
+.delete-btn {
+  background: #f8d7da;
+  color: #842029;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.delete-btn:hover {
+  background: #f1b0b7;
+}
+
+/* ===== ランキング ===== */
+.ranking-row {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+.ranking-header {
+  background: #f1f3f5;
+  font-weight: bold;
+}
+
+/* ===== 金 ===== */
+.rank-1 {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    #fff6bf 0%,
+    #ffd700 40%,
+    #f1c40f 60%,
+    #fff6bf 100%
+  );
+  color: #2b2100;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.rank-1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 160%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(0,0,0,0.08) 45%,
+    rgba(0,0,0,0.15) 50%,
+    rgba(0,0,0,0.08) 55%
+  );
+  pointer-events: none;
+}
+
+/* ===== 銀 ===== */
+.rank-2 {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    #f8f9fa 0%,
+    #d9d9d9 40%,
+    #c0c0c0 60%,
+    #f8f9fa 100%
+  );
+  color: #333;
+  overflow: hidden;
+}
+
+.rank-2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 160%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(0,0,0,0.07) 45%,
+    rgba(0,0,0,0.14) 50%,
+    rgba(0,0,0,0.07) 55%
+  );
+  pointer-events: none;
+}
+
+/* ===== 銅 ===== */
+.rank-3 {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    #fce9d8 0%,
+    #cd7f32 40%,
+    #b87333 60%,
+    #fce9d8 100%
+  );
+  color: #3b1f00;
+  overflow: hidden;
+}
+
+.rank-3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 160%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(0,0,0,0.06) 45%,
+    rgba(0,0,0,0.12) 50%,
+    rgba(0,0,0,0.06) 55%
+  );
+  pointer-events: none;
+}
+
+.rank-1,
+.rank-2,
+.rank-3 {
+  text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+}
+
+/* ===== 指標ボタン ===== */
+#metric-switch {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.metric-active {
+  background: #198754;
+  color: white;
+}
