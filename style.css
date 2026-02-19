@@ -6,6 +6,10 @@ body {
   color: #333;
 }
 
+html, body { 
+  touch-action: manipulation; /* ダブルタップズーム抑制 */
+}
+
 .container {
   max-width: 600px;
   margin: auto;
@@ -256,3 +260,4 @@ button:active {
   background: #198754;
   color: white;
 }
+
