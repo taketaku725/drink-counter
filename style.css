@@ -78,6 +78,11 @@ h1, h2 {
   background: #f3e8ff;
 }
 
+/* gsh色 */
+.gsh-block {
+  background: #f3ffe3;
+}
+
 /* ラベル */
 .counter-label {
   font-size: 13px;
@@ -260,4 +265,5 @@ button:active {
   background: #198754;
   color: white;
 }
+
 
