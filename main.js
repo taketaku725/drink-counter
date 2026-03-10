@@ -4,7 +4,7 @@ let nextId = 1;
 
 /* ===== 合計 ===== */
 function getTotal(member) {
-  return member.dr + member.sh;
+  return member.dr + member.sh + member.gsh;
 }
 
 /* ===== ソート ===== */
@@ -220,3 +220,4 @@ document.getElementById("name-input")
 
 /* ===== 初回描画 ===== */
 render();
+
