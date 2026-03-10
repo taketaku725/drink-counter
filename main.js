@@ -12,20 +12,25 @@ function sortMembers(data, metric) {
   const copied = [...data];
 
   copied.sort((a, b) => {
+
     if (metric === "total") {
+
       const totalDiff = getTotal(b) - getTotal(a);
       if (totalDiff !== 0) return totalDiff;
+
+      const gshDiff = b.gsh - a.gsh;
+      if (gshDiff !== 0) return gshDiff;
 
       const shDiff = b.sh - a.sh;
       if (shDiff !== 0) return shDiff;
 
+      const drDiff = b.dr - a.dr;
+      if (drDiff !== 0) return drDiff;
+
       return 0;
     }
 
-    const diff = b[metric] - a[metric];
-    if (diff !== 0) return diff;
-
-    return 0;
+    return b[metric] - a[metric];
   });
 
   return copied;
@@ -33,33 +38,45 @@ function sortMembers(data, metric) {
 
 /* ===== 飛ばし順位 ===== */
 function assignRanks(sortedData, metric) {
+
   let currentRank = 1;
   let sameCount = 0;
 
   return sortedData.map((member, index) => {
+
     if (index === 0) {
       return { ...member, rank: 1 };
     }
 
     const prev = sortedData[index - 1];
-
     let isSame = false;
 
     if (metric === "total") {
+
       isSame =
         getTotal(member) === getTotal(prev) &&
-        member.sh === prev.sh;
+        member.gsh === prev.gsh &&
+        member.sh === prev.sh &&
+        member.dr === prev.dr;
+
     } else {
+
       isSame = member[metric] === prev[metric];
+
     }
 
     if (isSame) {
+
       sameCount++;
       return { ...member, rank: currentRank };
+
     } else {
+
       currentRank += sameCount + 1;
       sameCount = 0;
+
       return { ...member, rank: currentRank };
+
     }
   });
 }
@@ -86,19 +103,27 @@ function renderMembers() {
 
         <div class="member-actions">
 
+          <div class="counter-block gsh-block">
+            <span class="counter-label">GSh</span>
+            <button class="dec-btn" data-action="dec-gsh" data-id="${member.id}">-</button>
+            ${member.gsh}
+            <button class="inc-btn" data-action="inc-gsh" data-id="${member.id}">+</button>
+          </div>
+
+          <div class="counter-block sh-block">
+            <span class="counter-label">Sh</span>
+            <button class="dec-btn" data-action="dec-sh" data-id="${member.id}">-</button>
+            ${member.sh}
+            <button class="inc-btn" data-action="inc-sh" data-id="${member.id}">+</button>
+          </div>
+
           <div class="counter-block dr-block">
-            <span class="counter-label">dr</span>
+            <span class="counter-label">Dr</span>
             <button class="dec-btn" data-action="dec-dr" data-id="${member.id}">-</button>
             ${member.dr}
             <button class="inc-btn" data-action="inc-dr" data-id="${member.id}">+</button>
           </div>
 
-          <div class="counter-block sh-block">
-            <span class="counter-label">sh</span>
-            <button class="dec-btn" data-action="dec-sh" data-id="${member.id}">-</button>
-            ${member.sh}
-            <button class="inc-btn" data-action="inc-sh" data-id="${member.id}">+</button>
-          </div>
         </div>
       </div>
 
@@ -143,8 +168,9 @@ function renderRanking() {
       <div>${member.rank}位</div>
       <div class="name">${member.name}</div>
       <div>
-        ${member.dr}dr ｜ 
-        ${member.sh}sh ｜ 
+        ${member.gsh}GSh ｜ 
+        ${member.sh}Sh ｜ 
+        ${member.dr}Dr ｜ 
         ${getTotal(member)}杯
       </div>
     `;
@@ -178,6 +204,9 @@ document.addEventListener("click", (e) => {
     if (action === "inc-sh") member.sh++;
     if (action === "dec-sh" && member.sh > 0) member.sh--;
 
+    if (action === "inc-gsh") member.gsh++;
+    if (action === "dec-gsh" && member.gsh > 0) member.gsh--;
+
     if (action === "delete") {
       members = members.filter(m => m.id !== id);
     }
@@ -200,8 +229,9 @@ function addMember() {
   members.push({
     id: nextId++,
     name,
-    dr: 0,
-    sh: 0
+    gsh: 0,
+    sh: 0,
+    dr: 0
   });
 
   input.value = "";
@@ -220,4 +250,5 @@ document.getElementById("name-input")
 
 /* ===== 初回描画 ===== */
 render();
+
 
